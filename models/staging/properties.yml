@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_citibike_trips
+    description: Cleaned and typed Citi Bike trip records. One row represents one ride.
+
+    columns:
+      - name: ride_id
+        description: Unique identifier for a Citi Bike ride.
+        data_tests:
+          - not_null
+          - unique
