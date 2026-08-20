@@ -12,6 +12,10 @@ models:
           - not_null
           - unique
 
+      - name: ride_duration_minutes
+        description: >
+          Ride duration in minutes, calculated from the ride start and end timestamps.
+
   - name: dim_station
     description: >
       Citi Bike station dimension. One row represents one station,
@@ -86,3 +90,30 @@ models:
                   - net_inbound
                   - net_outbound
                   - balanced
+
+  - name: mart_daily_rider_behavior
+    description: >
+      Daily Citi Bike rider behavior model. One row represents one
+      calendar date and one rider type.
+
+    columns:
+      - name: ride_date
+        description: Calendar date on which the ride started.
+        data_tests:
+          - not_null
+
+      - name: rider_type
+        description: Citi Bike rider classification as member or casual.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - member
+                  - casual
+
+      - name: median_ride_duration_minutes
+        description: Median ride duration in minutes for the date and rider type.
+
+      - name: total_rides
+        description: Number of rides for the date and rider type.

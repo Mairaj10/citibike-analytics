@@ -11,6 +11,7 @@ select
     rideable_type,
     started_at,
     ended_at,
+    DATEDIFF('second', started_at, ended_at) / 60.0 AS ride_duration_minutes,
     start_station_name,
     start_station_id,
     end_station_name,
