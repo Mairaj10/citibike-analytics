@@ -28,9 +28,8 @@ from {{ ref('stg_citibike_trips') }}
 
 {% if is_incremental() %}
 
-where loaded_at > (
-    select max(loaded_at)
+where loaded_at >= (
+    select dateadd(day, -2, coalesce(max(loaded_at), '1900-01-01'::timestamp_ltz))
     from {{ this }}
 )
-
 {% endif %}

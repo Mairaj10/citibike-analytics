@@ -4,6 +4,9 @@ models:
   - name: fct_citibike_trips
     description: >
       Cleaned Citi Bike trip fact model. One row represents one ride.
+      The model is incrementally maintained using ride_id as the merge key
+      and reprocesses a two-day ingestion lookback window. A full refresh
+      can be used for backfills or recovery.
 
     columns:
       - name: ride_id
