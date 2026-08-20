@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: fct_citibike_trips
+    description: >
+      Incremental Citi Bike trip fact table. One row represents one ride.
+
+    columns:
+      - name: ride_id
+        description: Unique identifier for a Citi Bike ride.
+        data_tests:
+          - not_null
+          - unique
