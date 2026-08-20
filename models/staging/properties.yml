@@ -10,3 +10,37 @@ models:
         data_tests:
           - not_null
           - unique
+
+  - name: stg_weather_daily
+    description: >
+      Cleaned and typed daily NOAA weather observations for the
+      Central Park weather station.
+
+    columns:
+      - name: station
+        description: NOAA weather station identifier.
+        data_tests:
+          - not_null
+
+      - name: weather_date
+        description: Calendar date of the weather observation.
+        data_tests:
+          - not_null
+
+      - name: precipitation_inches
+        description: Daily precipitation in inches.
+
+      - name: snowfall_inches
+        description: Daily snowfall in inches.
+
+      - name: max_temperature_f
+        description: Daily maximum temperature in degrees Fahrenheit.
+
+      - name: min_temperature_f
+        description: Daily minimum temperature in degrees Fahrenheit.
+
+      - name: source_filename
+        description: Name of the source file loaded into Snowflake.
+
+      - name: loaded_at
+        description: Timestamp when the source file was loaded into Snowflake.

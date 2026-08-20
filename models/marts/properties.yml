@@ -117,3 +117,43 @@ models:
 
       - name: total_rides
         description: Number of rides for the date and rider type.
+
+  - name: mart_daily_rider_weather
+    description: >
+      Daily Citi Bike rider behavior enriched with Central Park NOAA
+      weather observations. One row represents one calendar date
+      and one rider type.
+
+    columns:
+      - name: ride_date
+        description: Calendar date on which the rides started.
+        data_tests:
+          - not_null
+
+      - name: rider_type
+        description: Citi Bike rider classification as member or casual.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - member
+                  - casual
+
+      - name: total_rides
+        description: Number of rides for the date and rider type.
+
+      - name: median_ride_duration_minutes
+        description: Median ride duration in minutes for the date and rider type.
+
+      - name: precipitation_inches
+        description: Daily precipitation in inches at the Central Park weather station.
+
+      - name: snowfall_inches
+        description: Daily snowfall in inches at the Central Park weather station.
+
+      - name: max_temperature_f
+        description: Daily maximum temperature in degrees Fahrenheit.
+
+      - name: min_temperature_f
+        description: Daily minimum temperature in degrees Fahrenheit.

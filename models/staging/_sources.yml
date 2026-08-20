@@ -8,3 +8,11 @@ sources:
     tables:
       - name: citibike_trips
         identifier: CITIBIKE_TRIPS
+
+  - name: weather
+    database: CITIBIKE_ANALYTICS
+    schema: RAW
+
+    tables:
+      - name: weather_daily
+        identifier: WEATHER_DAILY
