@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: int_station_hourly_flow
+    description: >
+      Hourly Citi Bike station flow model. One row represents one known
+      station during one specific hour.
+
+    columns:
+      - name: station_id
+        description: Citi Bike station identifier.
+        data_tests:
+          - not_null
+
+      - name: station_hour
+        description: Hourly time bucket for station activity.
+        data_tests:
+          - not_null
+
+      - name: departures
+        description: Number of rides that started at the station during the hour.
+
+      - name: arrivals
+        description: Number of rides that ended at the station during the hour.
+
+      - name: net_flow
+        description: >
+          Arrivals minus departures. Positive values indicate net inbound flow;
+          negative values indicate net outbound flow.

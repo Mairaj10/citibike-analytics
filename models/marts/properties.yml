@@ -3,7 +3,7 @@ version: 2
 models:
   - name: fct_citibike_trips
     description: >
-      Incremental Citi Bike trip fact table. One row represents one ride.
+      Cleaned Citi Bike trip fact model. One row represents one ride.
 
     columns:
       - name: ride_id
@@ -11,3 +11,78 @@ models:
         data_tests:
           - not_null
           - unique
+
+  - name: dim_station
+    description: >
+      Citi Bike station dimension. One row represents one station,
+      using its most recently observed station information.
+
+    columns:
+      - name: station_id
+        description: Unique Citi Bike station identifier.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: station_name
+        description: Most recently observed name for the station.
+
+      - name: latitude
+        description: Most recently observed station latitude.
+
+      - name: longitude
+        description: Most recently observed station longitude.
+
+      - name: last_observed_at
+        description: Timestamp of the observation used to represent the station.
+
+  - name: mart_station_hourly_demand
+    description: >
+      Business-facing hourly station demand model. One row represents
+      one Citi Bike station during one specific hour.
+
+    columns:
+      - name: station_id
+        description: Citi Bike station identifier.
+        data_tests:
+          - not_null
+
+      - name: station_hour
+        description: Specific hourly time bucket for station activity.
+        data_tests:
+          - not_null
+
+      - name: station_name
+        description: Most recently observed name for the station.
+
+      - name: latitude
+        description: Most recently observed station latitude.
+
+      - name: longitude
+        description: Most recently observed station longitude.
+
+      - name: departures
+        description: Number of rides starting at the station during the hour.
+
+      - name: arrivals
+        description: Number of rides ending at the station during the hour.
+
+      - name: net_flow
+        description: >
+          Arrivals minus departures. Positive means net inbound movement
+          and negative means net outbound movement.
+
+      - name: total_activity
+        description: Total arrivals plus departures during the hour.
+
+      - name: flow_direction
+        description: >
+          Business-friendly classification of station flow as net_inbound,
+          net_outbound, or balanced.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - net_inbound
+                  - net_outbound
+                  - balanced
