@@ -1,3 +1,5 @@
+[![dbt CI](https://github.com/Mairaj10/citibike-analytics/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/Mairaj10/citibike-analytics/actions/workflows/dbt_ci.yml)
+
 # Citi Bike Operations Analytics
 
 An analytics engineering project built with Snowflake, dbt Core, SQL, Git, and GitHub Actions.
